@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流 & 防抖</title>
+    <style>
+        .but {
+            height: 50px;
+            width: 100px;
+            font-size: 28px;
+            font-weight: bolder;
+        }
+
+        .but1 {
+            background-color: #ff8080;
+        }
+
+        .but2 {
+            background-color: #8c80f7;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="but but1">节流</button>
+    <button class="but but2">防抖</button>
+    <script>
+        const but1 = document.getElementsByClassName("but1")[0]
+        const but2 = document.getElementsByClassName("but2")[0]
+
+        // 节流函数
+        function throttle(fn, timeout) {
+            let timer = null
+            return function (...arg) {
+                console.log("arg: ", arg);
+                if (timer) return
+                timer = setTimeout(() => {
+                    fn.apply(this, arg)
+                    timer = null
+                }, timeout)
+            }
+        }
+        // 防抖函数
+        function debounce(fn, timeout) {
+            let timer = null;
+            return function (...arg) {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    fn.apply(this, arg)
+                }, timeout)
+            }
+        }
+
+        clickLog = (arg) => {
+            console.log(arg);
+        }
+
+        but1.addEventListener("click", throttle(() => { clickLog("but1") }, 500))
+
+        but2.addEventListener("click", debounce(() => { clickLog("but2") }, 500))
+    </script>
+</body>
+
+</html>

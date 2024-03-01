@@ -1,5 +1,5 @@
-let nums = [-1, 0, 1, 3, 5, 9, 12];
-let target = 12;
+let nums = [-1,0,3,5,9,12];
+let target = 13;
 
 // 注意点：
 // 1. let right = nums.length;而非let right = nums.length - 1;
@@ -8,7 +8,7 @@ let target = 12;
 // 左闭右闭
 let func1 = (nums, target) => {
   let left = 0;
-  let right = nums.length;
+  let right = nums.length - 1;
   let middle = 0;
   while (left <= right) {
     middle = left + ((right - left) >> 1);
