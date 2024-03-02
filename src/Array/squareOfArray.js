@@ -16,7 +16,7 @@ squareOfArray = (nums) => {
     } else if (squareI > squareJ) {
       newArray[k] = squareI;
       i++;
-    } else if (squareI == squareJ && i != j) {
+    } else if (squareI == squareJ && i != j) { //相等但是指针未重合
       newArray[k] = squareI;
       i++;
     } else {

@@ -3,7 +3,7 @@
 
 let n = 5;
 
-spiralMatrix = (n) => {
+function spiralMatrix(n) {
   let matrix = new Array(n).fill(0).map(() => new Array(n).fill(0));
   let startX = 0;
   let startY = 0;
@@ -41,7 +41,7 @@ spiralMatrix = (n) => {
     matrix[mid][mid] = count;
   }
   return matrix;
-};
+}
 
 let result = spiralMatrix(n);
 result.map((item) => {

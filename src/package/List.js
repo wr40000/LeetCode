@@ -1,3 +1,4 @@
+// 链表节点定义
 export class ListNode {
   val;
   next = null;
@@ -7,6 +8,7 @@ export class ListNode {
   }
 }
 
+// 将根据输入的数组形式转化为  链表结构
 export const changeList = (array) => {
   let nodeArray = [];
   for (let i = 0; i < array.length; i++) {
