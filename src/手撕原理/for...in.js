@@ -9,16 +9,19 @@ let obj = {
   [Symbol("AA")]: 100,
   0: 200,
   1: 300,
+  cxk: { xhz: "蔡徐坤" },
 };
 
 for (let key in obj) {
-    if (!obj.hasOwnProperty(key)) break;
-    console.log(key);
+  if (!obj.hasOwnProperty(key)) break;
+  console.log(key);
 }
 let keys = Object.keys(obj);
-if (typeof Symbol !== "undefined") { // 判断浏览器是否支持Symbol
+if (typeof Symbol !== "undefined") {
+  // 判断浏览器是否支持Symbol
   keys = keys.concat(Object.getOwnPropertySymbols(obj));
 }
+console.log(keys);
 // keys.forEach((key) => {
 //   console.log("属性名：", key);
 //   console.log("属性值：", obj[key]);

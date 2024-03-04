@@ -61,24 +61,27 @@
 function func(x, y) {
   console.log(this, x, y);
 }
-let obj = 3;
+let obj = "obj";
+let objCall = "obj -- call";
+let objApply = "obj -- call";
+let objBind = "obj -- call";
 // 原理：就是利用 “点”定THIS机制，context.xxx=self “obj.xxx=func” => obj.xxx()
 // context上添加一个属性key = Symbol("key")，值就是指向函数本身的this，
 // 这样通过context[key]调用函数，自然也就改变了this指向
-Function.prototype.call = function (context, ...parms) {
-  // this/self->func  context->obj  params->[10,20]
-  let self = this;
-  let key = Symbol("key");
-  let result;
-  context = context == null ? window : context;
-  context = !/^(object|function)$/i.test(typeof context)
-    ? Object(context)
-    : context;
-  context[key] = self;
-  result = context[key](...parms);
-  delete context[key];
-  return result;
-};
+// Function.prototype.call = function (context, ...parms) {
+//   // this/self->func  context->obj  params->[10,20]
+//   let self = this;
+//   let key = Symbol("key");
+//   let result;
+//   context = context == null ? window : context;
+//   context = !/^(object|function)$/i.test(typeof context)
+//     ? Object(context)
+//     : context;
+//   context[key] = self;
+//   result = context[key](...parms);
+//   delete context[key];
+//   return result;
+// };
 // func.call(obj, 10, 20);
 
 // func函数基于__proto__找到Function.prototype.call，把call方法执行
@@ -89,14 +92,12 @@ Function.prototype.call = function (context, ...parms) {
 // func.call(obj, 10, 20);
 // func.apply(obj, [10, 20]);
 
-Function.prototype.bind = function (context, ...params) {
-  let self = this;
-  return function proxy(...args) {
-    self.apply(context, params.concat(args));
-  };
-};
-
-func.bind(obj)(10, 20);
+// Function.prototype.bind = function (context, ...params) {
+//   let self = this;
+//   return function proxy(...args) {
+//     self.apply(context, params.concat(args));
+//   };
+// };
 
 // func函数基于__proto__找到Function.prototype.bind，把bind方法执行
 //   在bind方法内部
@@ -107,3 +108,44 @@ func.bind(obj)(10, 20);
 //     变为之前存储的那些内容
 // document.body.addEventListener('click', func.bind(obj, 10, 20));
 // document.body.addEventListener('click', proxy)
+Function.prototype.call = function (context, ...params) {
+  let self = this;
+  let key = Symbol("KEY");
+  context = context == null ? window : context;
+  context = /^(function|object)$/i.test(typeof context)
+    ? context
+    : Object(context);
+  context[key] = self;
+  let result = context[key](...params);
+  console.log("自定义call");
+  delete context[key];
+  return result;
+};
+
+Function.prototype.apply = function (context, paramsArr) {
+  let self = this;
+  let key = Symbol("KEY");
+  context = context == null ? window : context;
+  context = /^(function|object)$/i.test(typeof context)
+    ? context
+    : Object(context);
+  context[key] = self;
+  let result = context[key](...paramsArr);
+  console.log("自定义apply");
+  delete context[key];
+  return result;
+};
+
+Function.prototype.bind = function (context, ...params) {
+  let self = this;
+  return function proxy(...arg) {
+    console.log("自定义bind");
+    self.call(context, params.concat(...arg));
+  };
+};
+
+func.call(objCall, 10, 20);
+func.apply(objApply, [10, 20]);
+func.bind(objBind)(10, 20);
+
+console.log(Function.prototype.__proto__ === Object.prototype);
