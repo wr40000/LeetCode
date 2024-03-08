@@ -11,19 +11,38 @@
  * @param {number} target
  * @return {number[]}
  */
+// 第一次提交
+// var twoSum = function (nums, target) {
+//     let arr = {}
+//     debugger
+//     for (let i = 0; i < nums.length; i++) {
+//         let item = target - nums[i];
+//         if(arr[item] !== undefined){
+//             return [i, arr[item]]
+//         }
+//         arr[nums[i]] = i
+//     }
+//     return []
+// };
+
+// 第二次提交
 var twoSum = function (nums, target) {
-    let arr = {}
-    debugger
-    for (let i = 0; i < nums.length; i++) {
-        let item = target - nums[i];
-        if(arr[item] !== undefined){
-            return [i, arr[item]]
+    let map = new Map();
+    let len = nums.length;
+    let tar;
+    for (let i = 0; i < len; i++) {
+        debugger
+        tar = target - nums[i];
+        if (!map.has(tar)) {
+            map.set(nums[i], i)
+        } else {
+            let index = map.get(tar)
+            return [i, index]
         }
-        arr[nums[i]] = i
     }
     return []
 };
-let nums = [3,3];
-let target = 6;
+let nums = [2,7,11,15]
+let target = 9;
 let result = twoSum(nums, target)
 console.log(result);
