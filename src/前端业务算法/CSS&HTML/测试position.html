@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0;
+        }
+        .box{
+            width: 500px;
+            height: 500px;
+            background-color: #ffe6e6;
+            display: flex;
+            align-items: flex-start;
+            justify-content: start;
+        }
+        .box1{
+            width: 50px;
+            height: 50px;
+            background-color: #7cf3ae;
+
+        }
+        .box2{
+            position: absolute;
+            background-color: #000000;
+            top:50px;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1"></div>
+        <div class="box1 box2"></div>
+        <div class="box1"></div>
+        <div class="box1"></div>
+        <div class="box1"></div>
+    </div>
+    <script type="module">
+        import * as GSAP from '../../../node_modules/gsap/index.js'
+        let {gsap} = GSAP
+        console.log(gsap);
+        gsap.from(".box2", { opacity: 0, y: 100, duration: 1 });
+    </script>
+</body>
+</html>

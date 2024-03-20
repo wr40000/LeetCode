@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>懒加载</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 1000px;
+            background-color: #eca0a0;
+            position: relative;
+        }
+
+        .box2 {
+            width: 50px;
+            height: 50px;
+            background-color: #e71515;
+            position: absolute;
+            top: 10px;
+            left: 0;
+        }
+
+        .box3 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            bottom: 10px;
+            left: 0;
+        }
+
+        .box3 img {
+            max-width: 100%;
+            /* 限制图片最大宽度为父元素宽度 */
+            max-height: 100%;
+            /* 限制图片最大高度为父元素高度 */
+            display: block;
+            /* 让图片表现为块级元素 */
+        }
+    </style>
+    <style>
+        .views {
+            margin-top: 30px;
+            padding-left: 50px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+        }
+
+        button {
+            border: 0;
+            background-color: #fff;
+            font-size: 24px;
+            border-radius: 7px;
+            margin-right: 15px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, .15), inset 0px 0px 0px rgba(0, 0, 0, 0);
+            padding: 10px 15px;
+            transition: .15s all ease-in-out;
+        }
+
+        button:hover {
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, .15), inset 0px 0px 0px rgba(0, 0, 0, 0);
+            transform: scale(1.05);
+        }
+
+        button:active {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0), inset 0px 12px 20px rgba(0, 0, 0, .15);
+            transform: scale(1);
+        }
+    </style>
+    <style>
+        .text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: skyblue;
+        }
+
+        h1 {
+            color: white;
+            font-family: Helvetica;
+            font-size: 35px;
+            /* letter-spacing: -4px; */
+            position: relative;
+            color: transparent;
+            background-image: linear-gradient(to right, white, white, transparent);
+            background-size: 200% 100%;
+            background-repeat: no-repeat;
+            -webkit-background-clip: text;
+            background-position-x: 200%;
+            animation: 2s fillup ease-in-out 2s forwards;
+        }
+
+        h1::after {
+            content: 'Incredible';
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-text-stroke: 2px;
+            -webkit-text-stroke-color: white;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: 2s fadein ease-in-out forwards;
+        }
+
+        @keyframes fillup {
+            from {
+                background-position-x: 200%;
+            }
+
+            to {
+                background-position-x: 0%;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="text">
+        <h1>Incredible</h1>
+    </div> -->
+    <!-- <div class="views">
+        <button>Notes</button>
+        <button>壁纸</button>
+    </div> -->
+    <div class="box">
+        <div class="box2"></div>
+        <div class="box3">
+            <img class="lazy-jpg" data-src="http://139.159.253.241/WebGPU/img/Black_Cat.png" />
+            <img class="lazy-jpg" data-src="http://139.159.253.241/WebGPU/img/img1_1k.jpg" />
+        </div>
+    </div>
+    <script>
+        let img = document.querySelectorAll(".lazy-jpg")
+        function lazyLoadImg(arr) {
+            const observer = new IntersectionObserver((changes) => {
+                changes.forEach((change) => {
+                    console.log(change);
+                    if (change.isIntersecting) {
+                        const img = change.target;
+                        img.src = img.dataset.src;
+                        observer.unobserve(img)
+                    }
+                })
+            })
+            arr.forEach((img) => {
+                observer.observe(img)
+            })
+        }
+        lazyLoadImg(img)
+    </script>
+</body>
+
+</html>
