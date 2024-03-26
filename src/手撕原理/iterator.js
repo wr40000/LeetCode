@@ -32,6 +32,7 @@ let result = ator.next();
 result = ator.next();
 result = ator.next();
 result = ator.next();
+result = ator.next();
 console.log(result);
 
 // 类数组对象「默认不具备迭代器规范」

@@ -22,6 +22,7 @@
 import { TreeNode, arrayToTree } from "../package/tree.js";
 
 var lowestCommonAncestor = function (root, p, q) {
+  debugger
   if (!root || root == p || root == q) {
     return root;
   }
@@ -40,6 +41,5 @@ let root = [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4];
 root = arrayToTree(root);
 let p = root.left;
 let q = root.left.right.right;
-debugger;
 let result = lowestCommonAncestor(root, p, q);
 console.log(result);

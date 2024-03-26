@@ -1,0 +1,110 @@
+.carousel-box,.carousel-content,.carousel-item ,.carousel-item-img {
+    width: 100%;
+    height: 100%;
+   }
+   .carousel-box,.carousel-item {
+    position: relative;
+   }
+   .carousel-box {
+    overflow: hidden;
+   }
+   .carousel-item {
+    display: none;
+   }
+   .carousel-item.active {
+    display: block;
+    left: 0;
+   }
+   .carousel-item-img {
+    object-fit: cover;
+   }
+   .carousel-item.active.left {
+    left: -100%;
+   }
+   .carousel-item.active.right {
+    left: 100%;
+   }
+   .carousel-item.next,
+   .carousel-item.prev {
+    display: block;
+    position: absolute;
+    top: 0;
+   }
+   .carousel-item.next {
+    left: 100%;
+   }
+   .carousel-item.prev {
+    left: -100%;
+   }
+   
+   .carousel-item.next.left,
+   .carousel-item.prev.right {
+    left: 0%;
+   }
+   
+   .carousel-sign {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 3px;
+    border-radius: 6px;
+    user-select: none;
+    background: linear-gradient(135deg,#73a0e4 10%,#1467e4 90%);
+   }
+   
+   .carousel-sign-item {
+    width: 22px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+    float: left;
+    color:#f2f3f4;
+    margin: auto 4px;
+    cursor: pointer;
+    border-radius: 4px;
+   }
+   .carousel-sign-item:hover {
+    color:#fff;
+   }
+   .carousel-sign-item.active {
+    color:#535455;
+    background-color: #ebebeb;
+   }
+   .carousel-ctrl {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    font-weight: 300;
+    user-select: none;
+    background: linear-gradient(135deg,#73a0e4 10%,#1467e4 90%);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    text-align: center;
+    padding: 1rem;
+   }
+   .carousel-ctrl.carousel-left-ctrl {
+    left: -50px;
+   }
+   .carousel-ctrl.carousel-right-ctrl {
+    right: -50px;
+   }
+   .carousel-box:hover .carousel-ctrl.carousel-left-ctrl {
+    left: 10px;
+   }
+   .carousel-box:hover .carousel-ctrl.carousel-right-ctrl {
+    right: 10px;
+   }
+   .carousel-ctrl:hover {
+    background-color: rgba(0,0,0,.8);
+   }
+   .carousel-container {
+      width: 500px;
+      height: 400px;
+      margin: auto;
+   }

@@ -1,50 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{
+        * {
             margin: 0;
             box-sizing: border-box;
             padding: 0;
+            background-color: #f8e4e4;
+            height: 200vh;
         }
-        .box{
+
+        .box {
             width: 500px;
-            height: 500px;
+            height: 200px;
+            border: 1px brown solid;
             background-color: #ffe6e6;
+        }
+
+        .style_1 {
             display: flex;
             align-items: flex-start;
             justify-content: start;
-        }
-        .box1{
-            width: 50px;
-            height: 50px;
-            background-color: #7cf3ae;
 
         }
-        .box2{
+
+        .style_2 {
+            height: 500px;
+        }
+
+        .box_base {
+            width: 50px;
+            height: 50px;
+        }
+
+        .littleone {
+            width: 10px;
+            height: 10px;
+
+        }
+
+        .style_1 .box1 {
+            background-color: #7cf3ae;
+        }
+
+        .style_1 .box2 {
             position: absolute;
             background-color: #000000;
-            top:50px;
+            top: 50px;
             left: 50px;
+        }
+
+        .style_2 .box1 {
+            float: left;
+            background-color: #7cf3ae;
+        }
+
+        .style_2 .box2 {
+            position: absolute;
+            background-color: #000000;
+            top: 200px;
+            left: 50px;
+        }
+
+        .stick_box {
+            background-color: #27dde4;
+            position: sticky;
+            top: 10px;
+            left: 50px;
+        }
+
+        .fixed_box {
+            background-color: #6f2cec;
+            position: fixed;
+            bottom: 10px;
+            left: 50px;
+        }
+        .box3{
+            background-color: #264efd;
+            position: absolute;
         }
     </style>
 </head>
+
 <body>
-    <div class="box">
-        <div class="box1"></div>
-        <div class="box1 box2"></div>
-        <div class="box1"></div>
-        <div class="box1"></div>
-        <div class="box1"></div>
+    <div class="box style_1">
+        <div class="box_base box1"></div>
+        <div class="box_base box1 box2"></div>
+        <div class="box_base box1"></div>
+        <div class="box_base box1"></div>
+        <div class="box_base box1"></div>
     </div>
+    <div class="box style_2">
+        <div class="box_base box1"></div>
+        <div class="box_base box2"></div>
+        <div class="box_base box1"></div>
+        <div class="box_base box1"></div>
+        <div class="box_base box1"></div>
+    </div>
+    <div class="box_base stick_box">
+        <div class="littleone box3">
+
+        </div>
+    </div>
+    <div class="box_base fixed_box"></div>
     <script type="module">
-        import * as GSAP from '../../../node_modules/gsap/index.js'
-        let {gsap} = GSAP
-        console.log(gsap);
-        gsap.from(".box2", { opacity: 0, y: 100, duration: 1 });
+        // import * as GSAP from '../../../node_modules/gsap/index.js'
+        // let { gsap } = GSAP
+        // console.log(gsap);
+        // gsap.from(".box2", { opacity: 0, y: 100, duration: 1 });
     </script>
 </body>
+
 </html>
