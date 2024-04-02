@@ -22,7 +22,7 @@ obj.map.set("obj", obj);
 const sym = Symbol("sym");
 obj[sym] = 1;
 
-const newObj = deepClone(obj);
+const newObj = deepCloneMy(obj);
 console.log("obj: ", obj);
 console.log("newObj: ", newObj);
 
@@ -62,6 +62,39 @@ function deepClone(target, hash = new WeakMap()) {
   }
 
   const cloneObj = new target.constructor();
+  hash.set(target, cloneObj);
+  Reflect.ownKeys(target).forEach((key) => {
+    cloneObj[key] = deepClone(target[key], hash);
+  });
+
+  return cloneObj;
+}
+
+function deepCloneMy(target, hash = new WeakMap()) {
+  if (target == null) return null;
+  if (target instanceof Date) return new Date(target);
+  if (target instanceof RegExp) return new RegExp(target);
+  if (typeof target !== "object") return target;
+  if (hash.has(target)) return hash.get(target);
+
+  if (target instanceof Map) {
+    let newMap = new Map();
+    hash.set(target, newMap);
+    for (let [key, value] in target) {
+      newMap.set(key, deepClone(value));
+    }
+    return newMap;
+  }
+
+  if (target instanceof Set) {
+    let newSet = new Set();
+    hash.set(target, newSet);
+    target.forEach((item) => {
+      newSet.add(deepClone(item));
+    });
+  }
+
+  let cloneObj = new target.constructor();
   hash.set(target, cloneObj);
   Reflect.ownKeys(target).forEach((key) => {
     cloneObj[key] = deepClone(target[key], hash);

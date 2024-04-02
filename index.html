@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LeetCode</title>
 </head>
+
 <body>
-    <script src="./dist/search.js"></script>
+    <script type="module" src="./dist/Promise.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 定义一个延迟指定时间后返回结果的 Promise
+            function delay(value, time) {
+                return new Promise(function (resolve) {
+                    setTimeout(function () {
+                        resolve(value);
+                    }, time);
+                });
+            }
+
+            // 创建多个 Promise 对象的数组
+            var promises = [
+                delay("First", 1000),
+                delay("Second", 2000),
+                delay("Third", 3000)
+            ];
+
+
+            // 测试 Promise.resolve
+            let p1 = new MyPromise().resolve(new Promise(resolve => {
+                resolve(3)
+            }))
+            // console.log(p1);
+
+            // 测试 Promise.all
+            MyPromise.prototype.all(promises).then(function (results) {
+                console.log("All promises resolved:", results);
+            })
+        });
+    </script>
 </body>
+
 </html>

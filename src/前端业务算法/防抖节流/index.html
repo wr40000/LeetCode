@@ -43,13 +43,35 @@
             }
         }
         // 防抖函数
-        function debounce(fn, timeout) {
-            let timer = null;
-            return function (...arg) {
-                clearTimeout(timer);
-                timer = setTimeout(() => {
-                    fn.apply(this, arg)
-                }, timeout)
+        // function debounce(fn, timeout) {
+        //     let timer = null;
+        //     return function (...arg) {
+        //         clearTimeout(timer);
+        //         timer = setTimeout(() => {
+        //             fn.apply(this, arg)
+        //         }, timeout)
+        //     }
+        // }
+        // 加强版防抖
+        const debounce = (func, timeout, immediate) => {
+            let timer
+
+            return function () {
+                let context = this
+                let args = arguments
+
+                if (timer) clearTimeout(timer)
+                if (immediate) { 
+                    var callNow = !timer
+                    timer = setTimeout(() => {
+                        timer = null
+                    }, timeout)
+                    if (callNow) func.apply(context, args)
+                } else {
+                    timer = setTimeout(function () {
+                        func.apply(context, args)
+                    }, timeout)
+                }
             }
         }
 
@@ -59,7 +81,7 @@
 
         but1.addEventListener("click", throttle(() => { clickLog("but1") }, 500))
 
-        but2.addEventListener("click", debounce(() => { clickLog("but2") }, 500))
+        but2.addEventListener("click", debounce(() => { clickLog("but2") }, 500, true))
     </script>
 </body>
 

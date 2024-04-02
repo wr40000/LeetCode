@@ -1,3 +1,5 @@
+// npx babel src\手撕原理\Promise.js --out-dir dist
+
 let PENDING = "PENDING";
 let RESOLVED = "RESOLVE";
 let REJECTED = "REJECT";
@@ -39,7 +41,7 @@ const resolvePromiseX = (promise, x, resolve, reject) => {
   }
 };
 
-class Promise {
+class MyPromise {
   constructor(execute) {
     this.state = PENDING;
     this.value = undefined;
@@ -134,8 +136,39 @@ class Promise {
 }
 
 
+MyPromise.prototype.all = (promises) => {
+  promises = Array.from(promises);
+  return new Promise((resolve, reject) => {
+    let len = promises.length;
+    let result = [];
+    if (len == 0) {
+      resolve(result);
+    } else {
+      for (let i = 0; i < len; i++) {
+        Promise.resolve(promises[i]).then(
+          (data) => {
+            result[i] = data;
+            if (i == len - 1) {
+              resolve(result);
+            }
+          },
+          (e) => {
+            reject(e);
+            return;
+          }
+        );
+      }
+    }
+  });
+};
+MyPromise.prototype.resolve = (value) => {
+  if (value instanceof Promise) return value;
+  return new Promise((resolve) => resolve(value));
+};
 
-export default Promise
+window.MyPromise = MyPromise
+
+// export default Promise;
 
 // 测试 Promise A+ 规范
 // module.exports = Promise;
