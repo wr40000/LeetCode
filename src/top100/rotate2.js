@@ -12,7 +12,8 @@ var rotate = function (matrix) {
   let len = matrix.length;
   if (len == 1) return matrix;
   for (let i = 0; i < len; i++) {
-    for (let j = i; i <= j && j < len; j++) {
+    // for (let j = i; i <= j && j < len; j++) {
+    for (let j = i; j<len; j++) {
       if (i == j) {
         continue;
       } else {
@@ -22,6 +23,7 @@ var rotate = function (matrix) {
       }
     }
   }
+
   let loop = Math.floor(len / 2)
   debugger
   for (let i = 0; i < len; i++) {

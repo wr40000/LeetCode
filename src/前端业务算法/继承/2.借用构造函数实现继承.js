@@ -11,9 +11,9 @@ function Dog(name) {
 let dog = new Dog("渔夫");
 dog.arr.push("Ter");
 let dog1 = new Dog("渔夫2号");
-console.log(dog);
-console.log(dog1);
-console.log(dog.__proto__ == dog1.__proto__);
+// console.log(dog);
+// console.log(dog1);
+// console.log(dog.__proto__ == dog1.__proto__);
 
 /**创建一个空对象：new 关键字会创建一个空对象，这个对象会成为新创建的实例对象。
 将构造函数的作用域赋给新对象：JavaScript 中的每个函数都有一个 prototype 属性，

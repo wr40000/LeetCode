@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form_">
+        <input id="hhh" name="user" type="text"></input>
+        <button type="submit">点击</button>
+    </form>
+    <script>
+        const form_ = document.getElementById('form_')
+        form_.addEventListener('submit',handle)
+        function handle(e) {
+            e.preventDefault();            
+            const value = hhh.value
+            console.log('handle',value)
+        }
+    </script>
+</body>
+</html>

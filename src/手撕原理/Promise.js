@@ -133,8 +133,10 @@ class MyPromise {
     });
     return promise2;
   }
+  catch(onrejected) {
+    return this.then(null, onrejected);
+  }
 }
-
 
 MyPromise.prototype.all = (promises) => {
   promises = Array.from(promises);
@@ -166,7 +168,7 @@ MyPromise.prototype.resolve = (value) => {
   return new Promise((resolve) => resolve(value));
 };
 
-window.MyPromise = MyPromise
+window.MyPromise = MyPromise;
 
 // export default Promise;
 

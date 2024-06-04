@@ -3,6 +3,7 @@
 function Parent(name) {
     this.name = name
     this.colors = ["red", "blue", "yellow"]
+    this.work = {hhh: "aaa"}
  }
  Parent.prototype.sayName = function () {
     console.log(this.name);
@@ -22,15 +23,17 @@ function Parent(name) {
  }
  
  let child1 = new Child("yhd", 19);
- child1.colors.push("pink");
- console.log(child1.colors); // ["red", "blue", "yellow", "pink"]
- child1.sayAge(); // 19
- child1.sayName(); // "yhd"
+ child1.work.hhh = "bbb";
+ console.log(new Parent("dd"));
+//  child1.colors.push("pink");
+//  console.log(child1.colors); // ["red", "blue", "yellow", "pink"]
+//  child1.sayAge(); // 19
+//  child1.sayName(); // "yhd"
  
- let child2 = new Child("wxb", 30);
- console.log(child2.colors);  // ["red", "blue", "yellow"]
- child2.sayAge(); // 30
- child2.sayName(); // "wxb"
+//  let child2 = new Child("wxb", 30);
+//  console.log(child2.colors);  // ["red", "blue", "yellow"]
+//  child2.sayAge(); // 30
+//  child2.sayName(); // "wxb"
  
 //  组合继承综合了原型链继承和盗用构造函数继承(构造函数继承)，将两者的优点结合了
 //  起来，

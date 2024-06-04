@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h1>服务器的内容：</h1>
+        <input id="input-ele" type="text" name="inputVal">
+        <ul id="search_key">
+
+        </ul>
+    </div>
+    <script>
+        // https://jsonplaceholder.typicode.com/todos/${i}
+        const inputEle = document.querySelectorAll("#input-ele")[0]
+        const searchKey = document.querySelector("#search_key")
+        let res = null;
+        function request(number) {
+            if(number == 0) return
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `https://jsonplaceholder.typicode.com/todos/${number}`)
+            xhr.addEventListener("readystatechange", () => {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    let data = JSON.parse(xhr.response);
+                    res = data.title;
+                    const new_li = document.createElement("li");
+                    new_li.innerText = `搜索id: ${number}: 查询值: ${res}`;
+                    searchKey.appendChild(new_li);
+                    console.log(data);
+                }
+            })
+            xhr.send();
+        }
+        inputEle.addEventListener("input", () => {
+            res = null;
+            let regexp = /^\d{0,2}$/i;
+            if (!regexp.test(inputEle.value)) {
+                alert("请输入1-2位数字");
+                return
+            }
+
+            request(+inputEle.value);
+        })
+    </script>
+</body>
+
+</html>

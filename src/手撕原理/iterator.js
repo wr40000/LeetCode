@@ -27,7 +27,7 @@ arr[Symbol.iterator] = function () {
 };
 
 let ator = arr[Symbol.iterator]();
-debugger
+debugger;
 let result = ator.next();
 result = ator.next();
 result = ator.next();
@@ -37,12 +37,18 @@ console.log(result);
 
 // 类数组对象「默认不具备迭代器规范」
 let obj = {
-    0: 200,
-    1: 300,
-    2: 400,
-    length: 3
+  0: 200,
+  1: 300,
+  2: 400,
+  length: 3,
 };
 obj[Symbol.iterator] = Array.prototype[Symbol.iterator];
-// for(let value of obj){
-//     console.log(value);
+for(let value of obj){
+    console.log(value);
+  }
+
+// console.log("*******");
+
+// for(let [key, value] of Object.entries(obj)){
+//     console.log(key, value);
 // }

@@ -19,9 +19,9 @@ function unique2(arr) {
       i--;
       continue;
     }
-    arr[k] = arr[i];
+    // arr[k] = arr[i];
     obj[typeof item + item] = true;
-    k++;
+    // k++;
   }
   return arr;
 }
@@ -54,5 +54,7 @@ var arr = [
 
 let arr1 = unique(arr)
 let arr2 = unique2(arr)
+console.log(arr1);
+console.log(arr2);
 console.log(arr1.length == arr2.length);
 //[1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", {}]
