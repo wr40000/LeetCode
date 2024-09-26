@@ -33,6 +33,9 @@
     //haredmemory', 'es2020.string', 'es2020.symbol.wellknown', 'es2020.intl', 'esnext.array', 'esnext.symbol', 'esnext.asynciterable
     //', 'esnext.intl', 'esnext.bigint', 'esnext.string', 'esnext.promise', 'esnext.weakref'
     //    "lib": ["es6", "dom"]
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
 
     // outDir 用来指定编译后文件所在的目录
     "outDir": "./dist",

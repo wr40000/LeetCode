@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        function childConsole(data) {
+            console.log("child的方法被调用了，传入的数据是: ", data)
+        }
+        var data = 'hello, parent!';
+        window.top.parentConsole(data); // 或者使用window.parent.parentConsole(data)也行
+    </script>
+</body>
+
+</html>

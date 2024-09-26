@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.21.0",
     "gsap": "^3.12.5",
     "typescript": "^5.2.2"
   },

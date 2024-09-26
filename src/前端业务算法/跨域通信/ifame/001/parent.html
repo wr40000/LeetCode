@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <iframe id='testIframe' name='test' src='./child.html' frameborder='0' scrolling='no'>
+    </iframe>
+
+    <script type="text/javascript">
+        function parentConsole(data) {
+            console.log("parent的方法被调用了，传入的数据是: ", data)
+        }
+
+        var iframeDom = document.getElementById('testIframe');
+        // 需要等iframe加载完成后执行，不然有可能会报错
+        iframeDom.onload = function () {
+            var data = 'hello, child!';
+            iframeDom.contentWindow.childConsole(data);
+        }
+
+    </script>
+
+</body>
+
+</html>
